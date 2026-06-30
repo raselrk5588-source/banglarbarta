@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="bn">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>বাংলার বার্তা - সর্বশেষ বাংলাদেশের খবর</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css?v=2.9">
+</head>
+
+<body>
+
+  <div class="prog" id="prog" style="width:0"></div>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-inner">
+      <a class="logo" href="#" onclick="goCat('সব',document.querySelector('[data-cat=\'সব\']'));return false;">
+        <div class="logo-icon" style="background:none;box-shadow:none;">
+          <img src="assets/logo.png" alt="Banglar Barta Logo" style="width: 44px; height: 44px; border-radius: 12px; object-fit: cover;">
+        </div>
+        <div>
+          <div class="logo-title">বাংলার বার্তা</div>
+          <div class="logo-sub">Bangladesh News Hub</div>
+        </div>
+      </a>
+      <div class="search-box">
+        <i class="fas fa-search search-icon"></i>
+        <input type="text" id="searchIn" placeholder="খবর খুঁজুন..." autocomplete="off">
+      </div>
+      <div class="header-right">
+        <button class="theme-btn" id="themeBtn" onclick="toggleTheme()" title="থিম পরিবর্তন"><i
+            class="fas fa-moon"></i></button>
+        <button class="sub-btn" id="subBtn" onclick="openPW()">সাবস্ক্রাইব করুন</button>
+        <div class="profile-menu" id="profileMenu" style="display: none;">
+          <button class="profile-btn" id="profileBtn" onclick="toggleProfileMenu()" title="প্রোফাইল">
+            <i class="fas fa-user-circle"></i>
+          </button>
+          <div class="profile-dropdown" id="profileDropdown">
+            <div class="pd-header">প্রিমিয়াম ইউজার</div>
+            <div id="profNumber" style="font-size:11px;color:var(--text2);text-align:center;margin-top:-6px;margin-bottom:2px;letter-spacing:1px;font-family:monospace"></div>
+            <button class="unsub-btn" id="unsubBtn" onclick="confirmUnsub()">আনসাবস্ক্রাইব</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- VERSION BANNER -->
+
+  <!-- CATEGORY NAV -->
+  <nav class="cat-nav">
+    <div class="cat-nav-inner">
+      <button class="cat-btn active" data-cat="সব" onclick="goCat('সব',this)"><i class="fas fa-globe"></i> সব <span
+          class="cat-count" id="cnt-সব">0</span></button>
+      <button class="cat-btn" data-cat="জাতীয়" onclick="goCat('জাতীয়',this)">🏛️ জাতীয় <span class="cat-count"
+          id="cnt-জাতীয়">0</span></button>
+      <button class="cat-btn" data-cat="আন্তর্জাতিক" onclick="goCat('আন্তর্জাতিক',this)">🌍 আন্তর্জাতিক <span
+          class="cat-count" id="cnt-আন্তর্জাতিক">0</span></button>
+      <button class="cat-btn" data-cat="রাজনীতি" onclick="goCat('রাজনীতি',this)">⚖️ রাজনীতি <span class="cat-count"
+          id="cnt-রাজনীতি">0</span></button>
+      <button class="cat-btn" data-cat="খেলাধুলা" onclick="goCat('খেলাধুলা',this)">⚽ খেলাধুলা <span class="cat-count"
+          id="cnt-খেলাধুলা">0</span></button>
+      <button class="cat-btn" data-cat="ব্যবসা" onclick="goCat('ব্যবসা',this)">📈 ব্যবসা <span class="cat-count"
+          id="cnt-ব্যবসা">0</span></button>
+      <button class="cat-btn" data-cat="বিনোদন" onclick="goCat('বিনোদন',this)">🎬 বিনোদন <span class="cat-count"
+          id="cnt-বিনোদন">0</span></button>
+      <button class="cat-btn" data-cat="প্রযুক্তি" onclick="goCat('প্রযুক্তি',this)">💻 প্রযুক্তি <span
+          class="cat-count" id="cnt-প্রযুক্তি">0</span></button>
+      <button class="cat-btn" data-cat="স্বাস্থ্য" onclick="goCat('স্বাস্থ্য',this)">🏥 স্বাস্থ্য <span
+          class="cat-count" id="cnt-স্বাস্থ্য">0</span></button>
+      <button class="cat-btn" data-cat="শিক্ষা" onclick="goCat('শিক্ষা',this)">📚 শিক্ষা <span class="cat-count"
+          id="cnt-শিক্ষা">0</span></button>
+      <button class="cat-btn" data-cat="চাকরি" onclick="goCat('চাকরি',this)">💼 চাকরি <span class="cat-count"
+          id="cnt-চাকরি">0</span></button>
+      <button class="fifa-wc-nav-btn" onclick="scrollToWC()" title="ফিফা বিশ্বকাপ ২০২৬">🏆 বিশ্বকাপ</button>
+    </div>
+  </nav>
+
+  <!-- MAIN -->
+  <main class="main">
+    <div class="stats-bar">
+      <div class="stat-chip"><i class="fas fa-newspaper"></i> মোট: <strong id="totCount">0</strong></div>
+      <div class="stat-chip"><i class="fas fa-rss"></i> সূত্র: <strong id="srcCount">0</strong>টি</div>
+      <div class="stat-chip"><i class="fas fa-clock"></i> আপডেট: <strong id="updTime">--</strong></div>
+    </div>
+
+    <!-- HERO + WEATHER -->
+    <div class="hero-weather-row" id="heroWeatherRow" style="display:none">
+      <div id="heroSec">
+        <div class="breaking-wrap" id="breakWrap">
+          <div class="breaking-tag"><i class="fas fa-circle"></i> ব্রেকিং</div>
+          <div class="breaking-scroll">
+            <div class="breaking-track" id="breakTrack">
+              <span class="b-item"><span class="b-dot">●</span>খবর লোড হচ্ছে...</span>
+              <span class="b-item"><span class="b-dot">●</span>প্রতি ৫ মিনিটে স্বয়ংক্রিয় আপডেট</span>
+              <span class="b-item"><span class="b-dot">●</span>খবর লোড হচ্ছে...</span>
+              <span class="b-item"><span class="b-dot">●</span>প্রতি ৫ মিনিটে স্বয়ংক্রিয় আপডেট</span>
+            </div>
+          </div>
+        </div>
+        <div class="sec-hdr" style="margin-top:14px">
+          <div class="sec-title">
+            <div class="sec-bar"></div><i class="fas fa-star" style="color:var(--red)"></i> শীর্ষ খবর
+          </div>
+        </div>
+        <div class="hero-wrap" id="heroWrap"></div>
+      </div>
+      <div class="weather-card" id="weatherCard">
+        <div class="wc-header">
+          <div class="wc-title"><i class="fas fa-cloud-sun"></i> আজকের আবহাওয়া</div>
+        </div>
+        <div id="wcAlertBar"></div>
+        <div class="wc-grid" id="wcGrid"></div>
+        <button class="wc-eq-btn" onclick="isSub()?openEarthquakeModal():openPW()">
+          <i class="fas fa-house-crack"></i> ভূমিকম্প সতর্কতা
+        </button>
+      </div>
+    </div>
+
+    <!-- FIFA WORLD CUP 2026 -->
+    <div class="fifa-section" id="fifaSection">
+      <div class="fifa-hdr">
+        <div class="fifa-hdr-left">
+          <div class="fifa-trophy">🏆</div>
+          <div>
+            <div class="fifa-title-text">ফিফা বিশ্বকাপ ২০২৬</div>
+            <div class="fifa-subtitle-text">FIFA World Cup 2026 · যুক্তরাষ্ট্র · কানাডা · মেক্সিকো</div>
+          </div>
+        </div>
+        <div class="fifa-hosts">
+          <span title="যুক্তরাষ্ট্র">🇺🇸</span>
+          <span title="কানাডা">🇨🇦</span>
+          <span title="মেক্সিকো">🇲🇽</span>
+        </div>
+      </div>
+      <div class="fifa-countdown" id="fifaCd">
+        <div class="fifa-cd-box">
+          <div class="fifa-cd-num" id="cdDays">--</div>
+          <div class="fifa-cd-lbl">দিন</div>
+        </div>
+        <div class="fifa-cd-box">
+          <div class="fifa-cd-num" id="cdHours">--</div>
+          <div class="fifa-cd-lbl">ঘণ্টা</div>
+        </div>
+        <div class="fifa-cd-box">
+          <div class="fifa-cd-num" id="cdMins">--</div>
+          <div class="fifa-cd-lbl">মিনিট</div>
+        </div>
+        <div class="fifa-cd-box">
+          <div class="fifa-cd-num" id="cdSecs">--</div>
+          <div class="fifa-cd-lbl">সেকেন্ড</div>
+        </div>
+      </div>
+      <div class="fifa-tabs">
+        <button class="fifa-tab active" id="fifaTabLiveBtn" onclick="wcTab('Live',this)">🔴 লাইভ ও সূচি</button>
+        <button class="fifa-tab" id="fifaTabPastBtn" onclick="wcTab('Past',this)">🔙 আগের ম্যাচ</button>
+      </div>
+      <div id="wcTabLive" class="fifa-tab-content">
+        <div class="fifa-loading" id="wcLiveStatus">
+          <div class="fifa-loading-dots"><span></span><span></span><span></span></div>
+          লাইভ স্কোর লোড হচ্ছে...
+        </div>
+        <div id="wcNoMatchMsg" style="display:none;text-align:center;padding:8px 0;">
+          <i class="fas fa-calendar-alt" style="font-size:28px;display:block;margin-bottom:8px;opacity:.4;"></i>
+          <p id="wcNoMatchText" style="font-size:13px;color:var(--text3);line-height:1.6;margin:0 0 12px;"></p>
+        </div>
+        <div id="wcMatchCards"></div>
+      </div>
+      <div id="wcTabPast" class="fifa-tab-content" style="display:none">
+        <div class="fifa-loading" id="wcPastStatus">
+          <div class="fifa-loading-dots"><span></span><span></span><span></span></div>
+          আগের ম্যাচের ফলাফল লোড হচ্ছে...
+        </div>
+      </div>
+    </div>
+
+    <!-- CATEGORY SECTIONS -->
+    <div id="catSecs"></div>
+
+    <!-- FILTERED VIEW -->
+    <div id="filteredSec" style="display:none">
+      <div class="sec-hdr">
+        <div class="sec-title">
+          <div class="sec-bar"></div><i class="fas fa-fire" style="color:var(--red)"></i><span id="filtLabel">খবর</span>
+        </div>
+      </div>
+      <div class="filtered-grid" id="filtGrid">
+        <div class="skel-card">
+          <div class="skel skel-img"></div>
+          <div class="skel-body">
+            <div class="skel skel-ln" style="width:55%;margin-bottom:12px"></div>
+            <div class="skel skel-ln" style="width:100%"></div>
+            <div class="skel skel-ln" style="width:80%;margin-top:6px"></div>
+          </div>
+        </div>
+        <div class="skel-card">
+          <div class="skel skel-img"></div>
+          <div class="skel-body">
+            <div class="skel skel-ln" style="width:55%;margin-bottom:12px"></div>
+            <div class="skel skel-ln" style="width:100%"></div>
+            <div class="skel skel-ln" style="width:80%;margin-top:6px"></div>
+          </div>
+        </div>
+        <div class="skel-card">
+          <div class="skel skel-img"></div>
+          <div class="skel-body">
+            <div class="skel skel-ln" style="width:55%;margin-bottom:12px"></div>
+            <div class="skel skel-ln" style="width:100%"></div>
+            <div class="skel skel-ln" style="width:80%;margin-top:6px"></div>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;justify-content:center;margin-top:22px">
+        <button id="moreBtn" onclick="loadMore()"
+          style="display:none;background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:11px 30px;color:var(--text2);font-family:inherit;font-size:13px;cursor:pointer;transition:all .2s"
+          onmouseover="this.style.borderColor='var(--red)'" onmouseout="this.style.borderColor='var(--border)'">
+          <i class="fas fa-chevron-down"></i> আরও খবর দেখুন
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <!-- SOURCE SECTION (Loaded dynamically) -->
+  <div id="sources-container"></div>
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="f-logo">বাংলার বার্তা</div>
+      <div class="f-desc">বাংলাদেশ ও বিশ্বের সর্বশেষ খবর। প্রতি ১২ ঘণ্টায় আপডেট।</div>
+      <div class="f-bottom">© ২০২৬ বাংলার বার্তা · সর্বস্বত্ব সংরক্ষিত</div>
+    </div>
+  </footer>
+
+  <!-- EARTHQUAKE MODAL -->
+  <div class="eq-overlay" id="eqOverlay">
+    <div class="eq-box">
+      <div class="eq-hero">
+        <button class="eq-close" onclick="closeEarthquakeModal()"><i class="fas fa-times"></i></button>
+        <div class="eq-title-row">
+          <span class="eq-icon">🌍</span>
+          <div class="eq-title">ভূমিকম্প সতর্কতা</div>
+        </div>
+        <div class="eq-subtitle">বাংলাদেশ ও পার্শ্ববর্তী অঞ্চলের সাম্প্রতিক ভূমিকম্প তথ্য</div>
+        <span class="eq-live-chip"><i class="fas fa-circle"></i> লাইভ আপডেট</span>
+      </div>
+      <div class="eq-body">
+        <div class="eq-section-title"><i class="fas fa-bolt"></i> সাম্প্রতিক ভূমিকম্প <span
+            style="font-size:9px;color:var(--text3);text-transform:none;font-weight:400;letter-spacing:0">(সূত্র:
+            USGS)</span></div>
+        <div id="eqList">
+          <div style="text-align:center;padding:30px;color:var(--text3)"><i class="fas fa-spinner fa-spin"
+              style="font-size:24px;display:block;margin-bottom:10px"></i>তথ্য লোড হচ্ছে...</div>
+        </div>
+        <div class="eq-section-title" style="margin-top:6px"><i class="fas fa-shield-alt"></i> নিরাপত্তা পরামর্শ</div>
+        <div class="eq-tips">
+          <div class="eq-tips-title"><i class="fas fa-exclamation-triangle"></i> ভূমিকম্পের সময় করণীয়</div>
+          <ul class="eq-tips-list">
+            <li>শক্ত টেবিল বা বিছানার নিচে আশ্রয় নিন এবং ঘাড় ও মাথা ঢাকুন</li>
+            <li>লিফট ব্যবহার করবেন না, সিঁড়ি দিয়ে বের হন</li>
+            <li>জানালা ও ভারী আসবাব থেকে দূরে থাকুন</li>
+            <li>কম্পন থামলে খোলা জায়গায় যান, বিদ্যুৎ লাইন থেকে দূরে</li>
+            <li>আফটারশকের জন্য প্রস্তুত থাকুন</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WEATHER MODAL -->
+  <div class="wm-overlay" id="wmOverlay">
+    <div class="wm-box" id="wmBox">
+      <div class="wm-hero" id="wmHero">
+        <button class="wm-close" onclick="closeWeatherModal()"><i class="fas fa-times"></i></button>
+        <div class="wm-city-name" id="wmCityName"></div>
+        <div class="wm-big-temp" id="wmBigTemp"></div>
+        <div class="wm-cond-big" id="wmCondBig"></div>
+        <div class="wm-stats" id="wmStats"></div>
+      </div>
+      <div id="wmAlertBox"></div>
+      <div class="wm-news-hdr"><i class="fas fa-newspaper"></i><span id="wmNewsHdr">সংশ্লিষ্ট খবর</span></div>
+      <div class="wm-news-list" id="wmNewsList"></div>
+    </div>
+  </div>
+
+  <!-- NEWS SUMMARY MODAL -->
+  <div class="ns-overlay" id="nsOverlay" style="display:none;">
+    <div class="ns-box">
+      <button class="ns-close" onclick="closeNewsModal()"><i class="fas fa-times"></i></button>
+      <div class="ns-content" id="nsContent">
+        <!-- populated by JS -->
+      </div>
+      <div class="ns-footer">
+        <button class="ns-read-btn" id="nsReadBtn" onclick=""><i class="fas fa-external-link-alt"></i> বিস্তারিত পড়ুন</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAYWALL (Loaded dynamically) -->
+  <div id="subscription-container"></div>
+
+
+
+
+
+  <div class="toast-wrap" id="toasts"></div>
+
+  <script src="components/sources.js?v=2.9"></script>
+  <script src="components/subscription.js?v=2.9"></script>
+  <script src="js/config.js?v=2.9"></script>
+  <script src="js/utils.js?v=2.9"></script>
+  <script src="js/subscription.js?v=2.9"></script>
+  <script src="js/ui.js?v=2.9"></script>
+  <script src="js/news.js?v=2.9"></script>
+  <script src="js/weather.js?v=2.9"></script>
+  <script src="js/earthquake.js?v=2.9"></script>
+  <script src="js/fifa.js?v=2.9"></script>
+  <script src="js/main.js?v=2.9"></script>
+</body>
+
+</html>
