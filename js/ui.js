@@ -5,6 +5,9 @@ function updateSubUI() {
   const pm = document.getElementById('profileMenu');
   if (pm) pm.style.display = s ? 'block' : 'none';
   
+  const pf = document.getElementById('premiumFeaturesSection');
+  if (pf) pf.style.display = s ? 'none' : 'block';
+  
   if (s) {
     try {
       const phone = localStorage.getItem('phone');

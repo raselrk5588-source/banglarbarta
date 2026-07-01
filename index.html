@@ -89,6 +89,41 @@
       <div class="stat-chip"><i class="fas fa-clock"></i> আপডেট: <strong id="updTime">--</strong></div>
     </div>
 
+    <!-- PREMIUM FEATURES -->
+    <div class="premium-features" id="premiumFeaturesSection" style="display:block">
+      <div class="premium-features-inner">
+        <div class="premium-features-header">
+          <div class="premium-features-title">
+            <i class="fas fa-crown"></i> প্রিমিয়াম ফিচারসমূহ 
+            <span style="background:var(--red);color:#fff;font-size:12px;padding:3px 10px;border-radius:20px;margin-left:8px;font-weight:600;letter-spacing:1px;box-shadow:0 2px 8px rgba(225,29,72,.4);">৪ টাকা/দিন (Vat+SC+SD)</span>
+          </div>
+          <div class="premium-features-subtitle">উন্নত অভিজ্ঞতা পেতে সাবস্ক্রাইব করুন এবং এই এক্সক্লুসিভ সুবিধাসমূহ আনলক করুন <br> <span style="font-size:12px;color:var(--text3);margin-top:4px;display:inline-block;">* শুধুমাত্র রবি এবং এয়ারটেল গ্রাহকদের জন্য প্রযোজ্য</span></div>
+        </div>
+        <div class="premium-grid">
+          <div class="premium-card">
+            <div class="premium-icon"><i class="fas fa-robot"></i></div>
+            <div class="premium-card-title">এআই সংবাদ সারসংক্ষেপ</div>
+            <div class="premium-card-desc">লম্বা খবর পড়ার সময় নেই? আমাদের শক্তিশালী এআই দিয়ে প্রতিটি খবরের চুম্বকাংশ এক নজরে জেনে নিন।</div>
+          </div>
+          <div class="premium-card">
+            <div class="premium-icon"><i class="fas fa-house-crack"></i></div>
+            <div class="premium-card-title">লাইভ ভূমিকম্প সতর্কতা</div>
+            <div class="premium-card-desc">রিয়েলটাইম (USGS) এপিআই ইন্টিগ্রেশনের মাধ্যমে যেকোনো ভূমিকম্পের খবর ও সতর্কতা সবার আগে পান।</div>
+          </div>
+          <div class="premium-card">
+            <div class="premium-icon"><i class="fas fa-futbol"></i></div>
+            <div class="premium-card-title">লাইভ স্পোর্টস ও বিশ্বকাপ</div>
+            <div class="premium-card-desc">ফিফা বিশ্বকাপসহ স্পোর্টস ইভেন্টগুলোর রিয়েলটাইম লাইভ স্কোর এবং দ্রুততম আপডেট।</div>
+          </div>
+          <div class="premium-card">
+            <div class="premium-icon"><i class="fas fa-star"></i></div>
+            <div class="premium-card-title">এক্সক্লুসিভ কন্টেন্ট</div>
+            <div class="premium-card-desc">বিশেষজ্ঞদের বিশ্লেষণ, গভীর প্রতিবেদন এবং গুরুত্বপূর্ণ খবরের এক্সক্লুসিভ অ্যাক্সেস।</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- HERO + WEATHER -->
     <div class="hero-weather-row" id="heroWeatherRow" style="display:none">
       <div id="heroSec">
@@ -306,6 +341,19 @@
 
 
 
+
+  <!-- CUSTOM CONFIRM MODAL -->
+  <div class="custom-confirm-overlay" id="customConfirmOverlay">
+    <div class="custom-confirm-box">
+      <div class="cc-icon"><i class="fas fa-exclamation-triangle"></i></div>
+      <div class="cc-title">সাবস্ক্রিপশন বাতিল করবেন?</div>
+      <div class="cc-desc">বাতিল করলে সকল প্রিমিয়াম কন্টেন্ট লক হয়ে যাবে। আপনি কি নিশ্চিত?</div>
+      <div class="cc-actions">
+        <button class="cc-btn-cancel" onclick="closeCustomConfirm()">না, বাতিল করব না</button>
+        <button class="cc-btn-confirm" onclick="proceedUnsubscribe()">হ্যাঁ, বাতিল করুন</button>
+      </div>
+    </div>
+  </div>
 
   <div class="toast-wrap" id="toasts"></div>
 

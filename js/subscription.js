@@ -129,9 +129,24 @@ async function verifyOTP() {
 }
 
 function confirmUnsub() {
-  if (confirm('সাবস্ক্রিপশন বাতিল করবেন?\n\nবাতিল করলে সকল প্রিমিয়াম কন্টেন্ট লক হয়ে যাবে।')) {
-    doUnsubscribe();
+  const overlay = document.getElementById('customConfirmOverlay');
+  if (overlay) {
+    overlay.style.display = 'flex';
+    setTimeout(() => overlay.classList.add('open'), 10);
   }
+}
+
+function closeCustomConfirm() {
+  const overlay = document.getElementById('customConfirmOverlay');
+  if (overlay) {
+    overlay.classList.remove('open');
+    setTimeout(() => overlay.style.display = 'none', 300);
+  }
+}
+
+function proceedUnsubscribe() {
+  closeCustomConfirm();
+  doUnsubscribe();
 }
 
 async function doUnsubscribe() {

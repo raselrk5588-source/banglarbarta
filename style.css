@@ -3547,3 +3547,174 @@
         gap: 12px;
       }
     }
+
+    /* Premium Features Section */
+    .premium-features {
+      margin-bottom: 36px;
+      padding: 30px;
+      background: linear-gradient(135deg, var(--card), var(--card2));
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      position: relative;
+      overflow: hidden;
+      animation: fadeIn 0.5s ease;
+    }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    
+    .premium-features::before {
+      content: '';
+      position: absolute;
+      top: -50px;
+      right: -50px;
+      width: 150px;
+      height: 150px;
+      background: var(--glow-gold);
+      filter: blur(50px);
+      border-radius: 50%;
+      z-index: 0;
+    }
+    .premium-features-inner {
+      position: relative;
+      z-index: 1;
+    }
+    .premium-features-header {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    .premium-features-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--gold2);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+    .premium-features-subtitle {
+      font-size: 14px;
+      color: var(--text2);
+    }
+    .premium-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+    }
+    .premium-card {
+      background: var(--bg);
+      padding: 20px;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      transition: all 0.3s ease;
+      text-align: center;
+      cursor: default;
+    }
+    .premium-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 24px rgba(217, 119, 6, 0.15);
+      border-color: var(--gold2);
+      background: var(--card);
+    }
+    .premium-icon {
+      font-size: 32px;
+      color: var(--gold2);
+      margin-bottom: 12px;
+      transition: transform 0.3s;
+    }
+    .premium-card:hover .premium-icon {
+      transform: scale(1.1);
+    }
+    .premium-card-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+    .premium-card-desc {
+      font-size: 13px;
+      color: var(--text2);
+      line-height: 1.5;
+    }
+
+    /* Custom Confirm Modal */
+    .custom-confirm-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(4px);
+      z-index: 99999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .custom-confirm-overlay.open {
+      display: flex;
+      opacity: 1;
+    }
+    .custom-confirm-box {
+      background: var(--card);
+      width: 90%;
+      max-width: 400px;
+      border-radius: 20px;
+      padding: 30px;
+      text-align: center;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+      transform: translateY(20px) scale(0.95);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      border: 1px solid var(--border);
+    }
+    .custom-confirm-overlay.open .custom-confirm-box {
+      transform: translateY(0) scale(1);
+    }
+    .cc-icon {
+      font-size: 48px;
+      color: var(--red);
+      margin-bottom: 16px;
+    }
+    .cc-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+    .cc-desc {
+      font-size: 15px;
+      color: var(--text2);
+      margin-bottom: 24px;
+      line-height: 1.5;
+    }
+    .cc-actions {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+    }
+    .cc-btn-cancel, .cc-btn-confirm {
+      padding: 12px 20px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+      border: none;
+      transition: all 0.2s;
+      flex: 1;
+    }
+    .cc-btn-cancel {
+      background: var(--bg3);
+      color: var(--text2);
+    }
+    .cc-btn-cancel:hover {
+      background: #d1d6e6;
+    }
+    .cc-btn-confirm {
+      background: var(--red);
+      color: #fff;
+      box-shadow: 0 4px 12px var(--glow-red);
+    }
+    .cc-btn-confirm:hover {
+      background: var(--red-dark);
+      transform: translateY(-2px);
+    }

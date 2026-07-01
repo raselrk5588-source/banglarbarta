@@ -13,7 +13,7 @@
 <body>
   <div class="login-container">
     <div class="login-card">
-      <a href="../index.html" class="close-btn"><i class="fa-solid fa-xmark"></i></a>
+      <a href="javascript:history.back()" class="close-btn"><i class="fa-solid fa-xmark"></i></a>
 
       <h1 class="logo">লগইন করুন</h1>
       <p class="subtitle">সাবস্ক্রিপশন করতে আপনার রবি/এয়ারটেল নম্বর দিন। চার্জ:<br>৪ টাকা/দিন (Vat+SC+SD)</p>
@@ -41,11 +41,11 @@
         return;
       }
 
-      // Demo number for testing
       if (phone === "01700000000") {
         localStorage.setItem("phone", phone);
         localStorage.setItem("isLoggedIn", true);
-        window.location.href = "../index.html";
+        const urlParams = new URLSearchParams(window.location.search);
+        window.location.href = urlParams.get('redirect') || "../index.html";
         return;
       }
 
@@ -63,14 +63,17 @@
         if (data.success) {
           localStorage.setItem("phone", phone);
           localStorage.setItem("ref", data.referenceNo);
-          window.location.href = "otp.html";
+          const urlParams = new URLSearchParams(window.location.search);
+          const redirectParam = urlParams.get('redirect') ? "?redirect=" + encodeURIComponent(urlParams.get('redirect')) : "";
+          window.location.href = "otp.html" + redirectParam;
         } else {
           const errMsg = data.message ? data.message.toLowerCase() : "";
           if (errMsg.includes("already registered")) {
             // Auto login
             localStorage.setItem("phone", phone);
             localStorage.setItem("isLoggedIn", "true");
-            window.location.href = "../index.html";
+            const urlParams = new URLSearchParams(window.location.search);
+            window.location.href = urlParams.get('redirect') || "../index.html";
           } else {
             alert(data.message || "OTP failed. Try again.");
           }
